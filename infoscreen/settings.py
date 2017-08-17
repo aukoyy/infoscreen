@@ -81,7 +81,7 @@ DATABASES = {
         'NAME': 'infoscreen_database',
         'USER': 'infouser',
         'PASSWORD': 'testoyvind123',
-        'HOST': '',#'localhost',
+        'HOST': 'localhost',
         'PORT': '',
     }
 }
