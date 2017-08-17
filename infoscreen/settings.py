@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     'display',
     'todo',
 ]
@@ -82,7 +81,7 @@ DATABASES = {
         'NAME': 'infoscreen_database',
         'USER': 'infouser',
         'PASSWORD': 'testoyvind123',
-        'HOST': 'localhost',
+        'HOST': '5432',#'localhost',
         'PORT': '',
     }
 }
