@@ -1,1 +1,1 @@
-web: gunicorn aukinfo.wsgi --log-file -
+web: gunicorn infoscreen.wsgi --log-file -
