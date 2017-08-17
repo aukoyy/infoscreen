@@ -1,1 +1,1 @@
-web: gunicorn infoscreends.wsgi --log-file -
+web: gunicorn infoscreen.wsgi --log-file -
