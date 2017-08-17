@@ -81,7 +81,7 @@ DATABASES = {
         'NAME': 'infoscreen_database',
         'USER': 'infouser',
         'PASSWORD': 'testoyvind123',
-        'HOST': '127.0.0.1',#'localhost',
+        'HOST': 'aukinfo.herokuapp.com',#'localhost',
         'PORT': '5432',
     }
 }
