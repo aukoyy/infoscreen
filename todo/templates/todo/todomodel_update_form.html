@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block head_title %}Todoapp || {{ block.super }}{% endblock head_title %}
+
+
+
+{% block content %}
+    <h1>Todo Edit Page</h1>
+
+    <form action="" method="post">{% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Update" />
+    </form>
+{% endblock content %}
+
+

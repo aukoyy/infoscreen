@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block head_title %}Todoapp || {{ block.super }}{% endblock head_title %}
+
+
+{% block content %}
+<h1>This is where the list goes</h1>
+
+<a href="create"><h3>New Todo</h3></a>
+
+<ul>
+    {% for obj in todo_object_list %}
+    <li>
+        <a href="{{ obj.pk }}"><h2>[{{ obj.pk }}]{{ obj.name }}</h2></a> <small>{{ obj.description }}  </small><strong>Priority: {{ obj.priority }}, done: {{ obj.done }}</strong>
+        <a href="{{ obj.pk }}/update">[edit] </a>
+        <a href="{{ obj.pk }}/delete">[delete]</a>
+    </li>
+    {% endfor %}
+</ul>
+
+
+{% endblock content %}
