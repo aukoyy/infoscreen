@@ -251,10 +251,7 @@ CSS Grid layout for wider screens, when browser supports grid:
 
         <h2>Google Calendar API?</h2>
 
-        <p>api testing</p>
-
-
-
+        Derp
 
     </aside>
     <aside class="twin">
@@ -265,27 +262,18 @@ CSS Grid layout for wider screens, when browser supports grid:
                 <th>Name</th>
                 <th>Net</th>
             </tr>
+            {% for launch in launchDict.launches %}
             <tr>
-            {% for names in launchNames %}
-                <td>{{ names }}</td>
-            {% endfor%}
+                <td>{{ launch.name }}</td>
+                <td>{{ launch.net }}</td>
             </tr>
-
-            {% for dates in launchDates %}
-                {{ dates }}
-            {% endfor%}
+            {% endfor %}
         </table>
-        <!--{% for launch in launches.Json %}-->
-            <!--{{ launchesJson.launches }}-->
-        <!--{% endfor %}-->
-        <!--<table id="rocketList">-->
-        <!--</table>-->
+                {{ launchDict.launches.0.net }}
     </aside>
-
     <footer class="colophon grid">
         <aside>Content, layout, design: <a href="https://twitter.com/mor10" target="_blank" rel="nofollow">Morten Rand-Hendriksen</a>.</aside>
     </footer>
-
     </div>
 
     <script>

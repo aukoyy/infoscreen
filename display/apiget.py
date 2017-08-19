@@ -20,11 +20,15 @@ def getLaunch5():
 
     return next5names, next5dates
 
-# next5names, next5dates = getLaunch5()
 
+def getLaunchDict():
+    with urllib.request.urlopen("https://launchlibrary.net/1.2/launch?next=5") as response:
+        decodedResponse = response.read().decode('UTF-8')
+        pythonDict = json.loads(decodedResponse)
+    return pythonDict
 
-# print(next5names[0])
-# print(next5dates[0])
-#
-# print(next5Launches["launches"][0]["name"])
+with urllib.request.urlopen("https://launchlibrary.net/1.2/launch?next=5") as response:
+    decodedResponse = response.read().decode('UTF-8')
+    pythonDict = json.loads(decodedResponse)
 
+print(pythonDict['launches'][1]['name'])

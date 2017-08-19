@@ -5,11 +5,12 @@ import datetime
 from django.utils import timezone
 # Create your views here.
 
-from .apiget import getLaunch5
+from .apiget import getLaunch5, getLaunchDict
 def displaypage(request):
     template_name = 'display/displaypage.html'
     queryset = TodoModel.objects.all()
     next5LaunchNames, next5LaunchDates = getLaunch5()
+    launchDict = getLaunchDict()
 
     #TODO check out "Django REST FrameWork
 
@@ -18,6 +19,7 @@ def displaypage(request):
         'todo_list': queryset,
         'launchNames': next5LaunchNames,
         'launchDates': next5LaunchDates,
+        'launchDict': launchDict,
     }
 
     return render(request, template_name, context)
