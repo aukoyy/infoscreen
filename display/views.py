@@ -9,16 +9,18 @@ from .apiget import getLaunch5, getLaunchDict
 def displaypage(request):
     template_name = 'display/displaypage.html'
     queryset = TodoModel.objects.all()
-    next5LaunchNames, next5LaunchDates = getLaunch5()
+    # queryset = sorted(queryset, key=queryset.priority)
+    # next5LaunchNames, next5LaunchDates = getLaunch5()
     launchDict = getLaunchDict()
+
 
     #TODO check out "Django REST FrameWork
 
     context = {
         'time': datetime.datetime.now(),
         'todo_list': queryset,
-        'launchNames': next5LaunchNames,
-        'launchDates': next5LaunchDates,
+        # 'launchNames': next5LaunchNames,
+        # 'launchDates': next5LaunchDates,
         'launchDict': launchDict,
     }
 

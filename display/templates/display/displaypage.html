@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block head_title %}Todoapp || {{ block.super }}{% endblock head_title %}
+{% block head_title %}Display || {{ block.super }}{% endblock head_title %}
 
 {% block content %}
 <head>
@@ -122,6 +122,7 @@ General styles
 
 .sidebar {
     background: #FF7F66;
+    /*background: #3E454C;*/
 }
 
 .twin {
@@ -229,17 +230,19 @@ CSS Grid layout for wider screens, when browser supports grid:
 
         <table style="width: 100%; text-align: left">
             <tr>
-                <th>Gjøremål</th>
-                <th>Pri</th>
                 <th>Done</th>
+                <th>Gjøremål</th>
+                <!--<th>Pri</th>-->
             </tr>
             <hr>
 
             {% for obj in todo_list %}
             <tr>
+                <label class="checkbox">
+                    <td><input id="doneCheck" type="checkbox" value="checked" {% if obj.done %} checked {% endif %}></td>
+                </label>
                 <td>{{ obj.name }}</td>
-                <td>{{ obj.priority }}</td>
-                <td>{{ obj.done }}</td>
+                <!--<td>{{ obj.priority }}</td>-->
             </tr>
             {% endfor %}
         </table>
@@ -269,10 +272,9 @@ CSS Grid layout for wider screens, when browser supports grid:
             </tr>
             {% endfor %}
         </table>
-                {{ launchDict.launches.0.net }}
     </aside>
     <footer class="colophon grid">
-        <aside>Content, layout, design: <a href="https://twitter.com/mor10" target="_blank" rel="nofollow">Morten Rand-Hendriksen</a>.</aside>
+        <aside>Footer </aside>
     </footer>
     </div>
 
