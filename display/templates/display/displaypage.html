@@ -118,6 +118,17 @@ General styles
 .masthead {
     background: #2185C5;
     color: white;
+    padding: 0px;
+    font-family: 'Courier New';
+    font-size: 15em;
+    text-align: center;
+}
+
+.quote {
+    background: #3E454C;
+    color: white;
+    padding: 1em;
+    text-align: justify;
 }
 
 .sidebar {
@@ -167,8 +178,10 @@ CSS Grid layout for wider screens, when browser supports grid:
 
         .site {
             display: grid;
+            /*Setup grid. Works by defining one column then next then next. Remember to mach number of grid cell
+            with the number of elements ment to occupie them*/
             grid-template-columns: 1fr repeat(6, minmax(auto, 10em)) 1fr;
-            grid-template-rows: minmax(1em, auto) 1fr auto minmax(1em, auto);
+            grid-template-rows: minmax(1em, auto) 4em 1fr auto minmax(1em, auto);
         }
 
         .masthead,
@@ -183,7 +196,7 @@ CSS Grid layout for wider screens, when browser supports grid:
 
         .main-content {
             grid-column: 2/6;
-            grid-row: 3;
+            grid-row: 3/4;
         }
 
         .sidebar {
@@ -220,12 +233,12 @@ CSS Grid layout for wider screens, when browser supports grid:
     <div class="site">
     <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
 
-    <header class="masthead" style="padding: 0px;">
-        <p class="site-title" id="clock" style="font-family: 'Courier New';font-size: 10em; padding: 0px; text-align: center;">Standard two-column layout</p>
+    <header class="masthead" >
+        <p class="site-title" id="clock">Standard two-column layout</p>
     </header><!-- .masthead -->
 
     <aside class="quote">
-        <p style="text-align: center"><strong>If you long for meaning, set yourself a worthy goal</strong></p>
+        <p style="text-align: center"><strong>I alle prosjekt finnes det en marshmallow</strong></p>
     </aside>
 
     <main id="content" class="main-content">
