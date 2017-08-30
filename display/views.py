@@ -6,13 +6,14 @@ from django.utils import timezone
 # Create your views here.
 
 from .apiget import getLaunch5, getLaunchDict
+import this
 def displaypage(request):
     template_name = 'display/displaypage.html'
     queryset = TodoModel.objects.all()
     # queryset = sorted(queryset, key=queryset.priority)
     # next5LaunchNames, next5LaunchDates = getLaunch5()
     launchDict = getLaunchDict()
-
+    
 
     #TODO check out "Django REST FrameWork
 
@@ -22,6 +23,7 @@ def displaypage(request):
         # 'launchNames': next5LaunchNames,
         # 'launchDates': next5LaunchDates,
         'launchDict': launchDict,
+        'this': this,
     }
 
     return render(request, template_name, context)
