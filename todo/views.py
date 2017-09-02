@@ -1,23 +1,41 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
-from django.urls import reverse_lazy
 from django.utils import timezone
-# Create your views here.
 
-from .models import TodoModel
+from .models import TodoModel, TodoList
 
 
-#TODO: update/upgrade to class based view for ListView as wll
+#TODO: update/upgrade to class based view for ListView as well
 def todoList(request):
-    queryset = TodoModel.objects.all()
+    todo_items = TodoModel.objects.all()
+    todo_lists = TodoList.objects.all()
     context = {
-        'todo_object_list': queryset
+        'todo_lists': todo_lists,
+        'todo_items': todo_items,
     }
     return render(request, "todo/todoList.html", context)
 
 
 
+
+# CRUD for todolists
+
+class ListCreate(CreateView):
+    # template_name = 'todo/todolist_form.html'
+    model = TodoList
+    fields = ['name',
+              'description',
+    ]
+
+
+#TODO implement functionality for update and delete lists
+
+# END CRUD for todolists
+
+
+
+# CRUD For todoitems
 
 class TodoCreate(CreateView):
     # template_name = "todo/todomodel_form.html"
@@ -26,6 +44,7 @@ class TodoCreate(CreateView):
               'description',
               'done',
               'priority',
+              'todoList',
     ]
 
 
@@ -34,7 +53,7 @@ class TodoDetailView(DetailView):
     model = TodoModel
     # queryset = TodoModel.objects.all()
 
-    #Following is only necessary for getting the current time field.
+    #The following is only necessary for getting the current time field.
     #If removed the current time will disappear, but the view will otherwise work
     def get_context_data(self, **kwargs):
         context = super(TodoDetailView, self).get_context_data(**kwargs)
@@ -59,3 +78,4 @@ class TodoDelete(DeleteView):
     success_url = "/todolist"
     # queryset = TodoModel.objects.all()
 
+# END CRUD for todoitems

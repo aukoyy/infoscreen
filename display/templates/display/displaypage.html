@@ -178,7 +178,7 @@ CSS Grid layout for wider screens, when browser supports grid:
 
         .site {
             display: grid;
-            /*Setup grid. Works by defining one column then next then next. Remember to mach number of grid cell
+            /*Setup grid. Works by defining one column then next then next. Remember to match number of grid cell
             with the number of elements ment to occupie them*/
             grid-template-columns: 1fr repeat(6, minmax(auto, 10em)) 1fr;
             grid-template-rows: minmax(1em, auto) 4em 1fr auto minmax(1em, auto);
@@ -242,14 +242,15 @@ CSS Grid layout for wider screens, when browser supports grid:
     </aside>
 
     <main id="content" class="main-content">
-        <h2>Uke 35</h2>
-        <p>12 uker til eksamen<br>3000 sider igjen å lese </p>
+        <h2>Uke {{ weekNum }}</h2>
+        <p>{{ weeksUntilExam }} uker til eksamen</p>
         <br><br><h3>Øvinger og ukentlige frister</h3><br>
-        <p>DiskMat : mandag 1215</p><br>
-        <p>AlgDat : mandag 1515</p><br>
-        <p>DigiDat : ?</p><br>
-        <p>Prosjekt : ?</p><br>
-        <p>Romteknologi : ingen øvinger</p><br>
+        <p style="font-size: 3em">
+            DiskMat : mandag 1215<br>
+            AlgDat : mandag 1515<br>
+            DigiDat : ?<br>
+            Prosjekt : ?<br>
+            Romteknologi : ingen øvinger</p><br>
     </main>
 
 
@@ -266,13 +267,15 @@ CSS Grid layout for wider screens, when browser supports grid:
             <hr>
 
             {% for obj in todo_list %}
-            <tr>
-                <label class="checkbox">
-                    <td><input id="doneCheck" type="checkbox" value="checked" {% if obj.done %} checked {% endif %}></td>
-                </label>
-                <td>{{ obj.name }}</td>
-                <!--<td>{{ obj.priority }}</td>-->
-            </tr>
+                {% if obj.priority >= 3 %}
+                <tr>
+                    <label class="checkbox">
+                        <td><input id="doneCheck" type="checkbox" value="checked" {% if obj.done %} checked {% endif %}></td>
+                    </label>
+                    <td>{{ obj.name }}</td>
+                    <!--<td>{{ obj.priority }}</td>-->
+                </tr>
+                {% endif %}
             {% endfor %}
         </table>
     </a>
@@ -281,7 +284,7 @@ CSS Grid layout for wider screens, when browser supports grid:
 
     <aside class="twin">
 
-        <h2>this</h2>
+        <h2>The Zen Of Python</h2>
 
         <p>Beautiful is better than ugly.<br>
             Explicit is better than implicit.<br>

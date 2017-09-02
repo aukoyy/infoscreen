@@ -3,20 +3,28 @@
 
 
 {% block content %}
-<h1>This is where the list goes</h1>
+<h1>List of todolists</h1>
 
 <a href="/"><h3>Display (Back)</h3></a>
 <a href="create"><h3>New Todo</h3></a>
+<a href="createlist"><h3>New List</h3></a>
 
-<ul>
-    {% for obj in todo_object_list %}
-    <li>
-        <a href="{{ obj.pk }}"><h2>[{{ obj.pk }}]{{ obj.name }}</h2></a> <small>{{ obj.description }}  </small><strong>Priority: {{ obj.priority }}, done: {{ obj.done }}</strong>
-        <a href="{{ obj.pk }}/update">[edit] </a>
-        <a href="{{ obj.pk }}/delete">[delete]</a>
-    </li>
-    {% endfor %}
-</ul>
+{% for list in todo_lists %}
+    <div style="border: solid red; padding: 1em;">
+        <h3>{{ list }}</h3>
+            <ul>
+        {% for obj in todo_items %}
+            {% if obj.todoList_id == list.id %}
+            <li>
+                <a href="{{ obj.pk }}"><h2>[{{ obj.pk }}]{{ obj.name }}</h2></a> <small>{{ obj.description }}  </small><strong>Priority: {{ obj.priority }}, done: {{ obj.done }}</strong>
+                <a href="{{ obj.pk }}/update">[edit] </a>
+                <a href="{{ obj.pk }}/delete">[delete]</a>
+            </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+    </div>
+{% endfor %}
 
 
 {% endblock content %}

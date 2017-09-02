@@ -25,7 +25,13 @@ from display.views import (
 )
 
 from todo.views import (
+    #Main view
     todoList,
+
+    #Todolist views
+    ListCreate,
+
+    #Todoitem views
     TodoCreate,
     TodoUpdate,
     TodoDelete,
@@ -36,15 +42,19 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', displaypage),
     url(r'^grid/$', displaypage_cssgrid),
-    
-    
+
+
+    #Handle todolists
+    url(r'^todolist/createlist', ListCreate.as_view()),
+
+    #Handle todoitems
     url(r'^todolist/$', todoList),
     url(r'^todolist/create/$', TodoCreate.as_view()),
     url(r'^todolist/(?P<pk>[-\w]+)/$', TodoDetailView.as_view()),
     url(r'^todolist/(?P<pk>\w+)/update/$', TodoUpdate.as_view()),
     url(r'^todolist/(?P<pk>\w+)/delete/$', TodoDelete.as_view()),
     
-    
+    #Part of the css tutorial
     url(r'^gridtut/$', displaypage_cssgridtut),
     url(r'^gridtut3/$', displaypage_cssgridtut3),
     url(r'^gridtut4/$', displaypage_cssgridtut4)
