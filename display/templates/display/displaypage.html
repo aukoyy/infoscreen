@@ -238,19 +238,13 @@ CSS Grid layout for wider screens, when browser supports grid:
     </header><!-- .masthead -->
 
     <aside class="quote">
-        <p style="text-align: center"><strong>Temperance. Eat not to dullness; drink not to elevation.</strong></p>
+        <p style="text-align: center"><strong>{{ ben_quote }}</strong></p>
     </aside>
 
     <main id="content" class="main-content">
-        <h2>Uke {{ weekNum }}</h2>
-        <p>{{ weeksUntilExam }} uker til eksamen</p>
-        <br><br><h3>Øvinger og ukentlige frister</h3><br>
-        <p style="font-size: 3em">
-            DiskMat : mandag 1215<br>
-            AlgDat : mandag 1515<br>
-            DigiDat : ?<br>
-            Prosjekt : ?<br>
-            Romteknologi : ingen øvinger</p><br>
+        <h1>Uke {{ weekNum }}</h1>
+        <h2>{{ weeksUntilExam }} uker til eksamen</h2>
+
     </main>
 
 
@@ -283,8 +277,7 @@ CSS Grid layout for wider screens, when browser supports grid:
 
 
     <aside class="twin">
-
-        some twin
+        <p style="font-size: 3em">{{ ben_quote }}</p>
 
     </aside>
     <aside class="twin">

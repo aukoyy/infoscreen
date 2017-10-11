@@ -1,14 +1,13 @@
 from django.shortcuts import render
 import datetime
 
-
-
 from .apiget import getLaunchDict
+from .libquotes import get_random_ben_quote
+
 
 def displaypage(request):
     template_name = 'display/displaypage.html'
     all_todo_items = TodoModel.objects.all()
-    # queryset = sorted(queryset, key=queryset.priority)
     launchDict = getLaunchDict()
 
     #Get the current week number. TODO: Find a more sleek way to do this...
@@ -17,14 +16,15 @@ def displaypage(request):
     day = datetime.datetime.now().day
     weekNum = datetime.date(year, month, day).isocalendar()[1]
 
-    #TODO check out "Django REST FrameWork
+    quote_of_the_day = get_random_ben_quote()
+
 
     context = {
-        # 'time': datetime.datetime.now(),
         'todo_list': all_todo_items,
         'launchDict': launchDict,
         'weekNum': weekNum,
         'weeksUntilExam': 47 - weekNum,
+        'ben_quote': quote_of_the_day,
     }
 
     return render(request, template_name, context)
