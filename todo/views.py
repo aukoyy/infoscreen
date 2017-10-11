@@ -66,7 +66,9 @@ class TodoUpdate(UpdateView): #,id=none
     fields = ['name',
               'description',
               'priority',
-              'done']
+              'done',
+              'todoList',
+    ]
     template_name_suffix = '_update_form'
     # query_pk_and_slug = self.object
     # instance = get_object_or_404(TodoModel, id=id)

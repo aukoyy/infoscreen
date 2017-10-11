@@ -1,38 +1,38 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-from django.shortcuts import render
 import datetime
-from django.utils import timezone
-# Create your views here.
+
+
 
 from .apiget import getLaunchDict
+
 def displaypage(request):
     template_name = 'display/displaypage.html'
-    queryset = TodoModel.objects.all()
+    all_todo_items = TodoModel.objects.all()
     # queryset = sorted(queryset, key=queryset.priority)
-    # next5LaunchNames, next5LaunchDates = getLaunch5()
     launchDict = getLaunchDict()
 
-    #Get the current week number. TODO: Find a more sleek way to do this..
+    #Get the current week number. TODO: Find a more sleek way to do this...
     year = datetime.datetime.now().year
     month = datetime.datetime.now().month
     day = datetime.datetime.now().day
-
     weekNum = datetime.date(year, month, day).isocalendar()[1]
 
     #TODO check out "Django REST FrameWork
 
     context = {
-        'time': datetime.datetime.now(),
-        'todo_list': queryset,
-        # 'launchNames': next5LaunchNames,
-        # 'launchDates': next5LaunchDates,
+        # 'time': datetime.datetime.now(),
+        'todo_list': all_todo_items,
         'launchDict': launchDict,
         'weekNum': weekNum,
         'weeksUntilExam': 47 - weekNum,
     }
 
     return render(request, template_name, context)
+
+
+
+
+# Alternative design:
 
 from todo.models import TodoModel
 
@@ -47,7 +47,7 @@ def displaypage_cssgrid(request):
 
     return render(request, template_name, context)
 
-
+# CSS Grid Tutorial:
 
 def displaypage_cssgridtut(request):
     return render(request, 'display/cssgridtut.html', {})
