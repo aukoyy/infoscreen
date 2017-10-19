@@ -33,9 +33,9 @@ from todo.views import (
 
     #Todoitem views
     TodoCreate,
+    TodoDetailView,
     TodoUpdate,
     TodoDelete,
-    TodoDetailView,
 )
 
 urlpatterns = [

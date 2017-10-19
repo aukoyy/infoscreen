@@ -1,8 +1,10 @@
 import random
 
+
 def get_random_ben_quote():
     rand_num = random.randint(0, 12)
     return ben_quotes()[rand_num]
+
 
 def ben_quotes():
     quote_list = [
