@@ -244,6 +244,15 @@ CSS Grid layout for wider screens, when browser supports grid:
     <main id="content" class="main-content">
         <h1>Uke {{ weekNum }}</h1>
         <h2>{{ weeksUntilExam }} uker til eksamen</h2>
+        <br>
+        <br>
+        <hr>
+        <h3>Øvingsfrister</h3>
+        <p>Objektorientert: Onsdager</p>
+        <p>Databaser: Mandager</p>
+        <p>Interaksjon: Onsdag/Fredag</p>
+        <p>Utvikling: se plan</p>
+        <p>Romteknologi II: 22.03 & 26.04</p>
 
     </main>
 
@@ -277,7 +286,13 @@ CSS Grid layout for wider screens, when browser supports grid:
 
 
     <aside class="twin">
-        <p style="font-size: 3em"> bedpress??</p>
+        <h2 style="padding-bottom: 0px;">Upcoming Bedpresser</h2>
+        <hr>
+        {% for bedpress in bedpresser %}
+            <ul>
+                <li>{{ bedpress }}</li>
+            </ul>
+            {% endfor %}
 
     </aside>
     <aside class="twin">

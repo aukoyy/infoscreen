@@ -3,12 +3,14 @@ import datetime
 
 from .apiget import getLaunchDict
 from .libquotes import get_random_ben_quote
+from .bedpressfinder import bedpressFinderApi
 
 
 def displaypage(request):
     template_name = 'display/displaypage.html'
     all_todo_items = TodoModel.objects.all()
     launchDict = getLaunchDict()
+    futureBedpress = bedpressFinderApi()
 
     #Get the current week number. TODO: Find a more sleek way to do this...
     year = datetime.datetime.now().year
@@ -23,8 +25,9 @@ def displaypage(request):
         'todo_list': all_todo_items,
         'launchDict': launchDict,
         'weekNum': weekNum,
-        'weeksUntilExam': 47 - weekNum,
+        'weeksUntilExam': 22 - weekNum,
         'ben_quote': quote_of_the_day,
+        'bedpresser': futureBedpress,
     }
 
     return render(request, template_name, context)
