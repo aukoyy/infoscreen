@@ -26,4 +26,3 @@ def ben_quotes():
     return quote_list
 
 
-
