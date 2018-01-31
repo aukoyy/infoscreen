@@ -289,8 +289,16 @@ CSS Grid layout for wider screens, when browser supports grid:
         <hr>
         {% for bedpress in bedpresser %}
             <ul>
-                <li>{{ bedpress }}</li>
+                <a href="https://online.ntnu.no{{ bedpress.absolute_url }}" target="_blank"><li><h3>{{ bedpress.title }}</h3></li></a>
+                    <ul>
+                        <li>Påmelding  : {{ bedpress.attendance_event.registration_start }}</li>
+                        <li>Event Start: {{ bedpress.event_start }}</li>
+                        <li>Start: {{ bedpress.location }}</li>
+                        <li>Antall plasser: {{ bedpress.attendance_event.max_capacity }}</li>
+
+                    </ul>
             </ul>
+
             {% endfor %}
 
     </aside>

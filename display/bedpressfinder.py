@@ -24,11 +24,6 @@ correctRules = ["Mastere og PhD, BiT etter 3 dager", "Bachelor", "1. og 2. klass
                 " Alle utenom 1. og 4. etter 24 timer","3., 2. og 4. etter 24 timer, 1. og 5. etter 48 timer",
                 "1., 2. og 5. etter 48 timer","Alle utenom 1. og 4. etter 48 timer","1. - 3. Klasse"]
 
-# page = urlopen(url)
-# apiMenu = json.loads(page.content.decode("latin1"))
-#
-# print(apiMenu)
-
 
 def bedpressFinderApi():
     # Global url is used, so that the global variable can be updated to load next page.
@@ -50,8 +45,9 @@ def bedpressFinderApi():
                 if rules['description'] != "":
                     if rules['description'] in correctRules:
                         # Adds the event to the list with a sleek format.
-                        availableEvents.append(element['title'] + ",\nPåmelding: "
-                                               + element['attendance_event']['registration_start']+"\n")
+                        # availableEvents.append(element['title'] + ",\nPåmelding: "
+                        #                        + element['attendance_event']['registration_start']+"\n")
+                        availableEvents.append(element)
     # If the metadata contains a next page, update url to this and run again.
     if(apiMenu['next']):
         url = apiMenu['next']
@@ -59,13 +55,7 @@ def bedpressFinderApi():
 
     return availableEvents
 
-# Runs the script first time
-# bedpressFinderApi()
+futureEvents = bedpressFinderApi()
 
-# print(availableEvents[1])
+# print(futureEvents)
 
-# Writes to output variable
-
-# for item in availableEvents:
-#     print("\n"+item)
-# f.close()
