@@ -14,8 +14,8 @@ def init():
 	prevent_evening_trigger()
 	#time.sleep(60*60)
 	while True:
-		#if weekday, run app
-		if datetime.datetime.now().weekday() < 6:  # < 5
+		#if weekday, run app (saturday is 5)
+		if datetime.datetime.now().weekday() < 5:
 			check_time()
 		else:
 			break
@@ -82,12 +82,11 @@ def check_time():
 		print('\n================================================')
 		print('waking up')
 		start_app()
-		time.sleep(10)
+		time.sleep(20)
 		hdmi_on()
-		time.sleep(60*60) #*60
-		start_music()
-		time.sleep(60*60*2)
-		stop_music()
+		#start_music()
+		#time.sleep(60*60*2)
+		#stop_music()
 	if not display_is_off and now_time() >= shut_down_time:
 		close_web()
 		print('going to sleep in 10 sek')
@@ -105,6 +104,7 @@ def hdmi_on():
 
 def start_app():
         webbrowser.get(using='chromium-browser').open(url)
+	time.sleep(5)
 	k.tap_key(k.function_keys[11])
 
 
