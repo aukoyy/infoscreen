@@ -19,9 +19,6 @@ from django.contrib import admin
 from display.views import (
     displaypage,
     displaypage_cssgrid,
-    displaypage_cssgridtut,
-    displaypage_cssgridtut3,
-    displaypage_cssgridtut4,
 )
 
 from todo.views import (
@@ -53,10 +50,5 @@ urlpatterns = [
     url(r'^todolist/(?P<pk>[-\w]+)/$', TodoDetailView.as_view()),
     url(r'^todolist/(?P<pk>\w+)/update/$', TodoUpdate.as_view()),
     url(r'^todolist/(?P<pk>\w+)/delete/$', TodoDelete.as_view()),
-    
-    #Part of the css tutorial
-    url(r'^gridtut/$', displaypage_cssgridtut),
-    url(r'^gridtut3/$', displaypage_cssgridtut3),
-    url(r'^gridtut4/$', displaypage_cssgridtut4)
 
 ]

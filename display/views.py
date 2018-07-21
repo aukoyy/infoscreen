@@ -50,13 +50,3 @@ def displaypage_cssgrid(request):
 
     return render(request, template_name, context)
 
-# CSS Grid Tutorial:
-
-def displaypage_cssgridtut(request):
-    return render(request, 'display/cssgridtut.html', {})
-
-def displaypage_cssgridtut3(request):
-    return render(request, 'display/cssgridtut3.html', {})
-
-def displaypage_cssgridtut4(request):
-    return render(request, 'display/cssgridtut4.html', {})
