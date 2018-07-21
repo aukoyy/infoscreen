@@ -25,7 +25,7 @@ def displaypage(request):
         'todo_list': all_todo_items,
         'launchDict': launchDict,
         'weekNum': weekNum,
-        'weeksUntilExam': 22 - weekNum,
+        'weeksUntilExam': 48 - weekNum,
         'ben_quote': quote_of_the_day,
         'bedpresser': futureBedpress,
     }
