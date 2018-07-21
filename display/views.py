@@ -1,31 +1,30 @@
 from django.shortcuts import render
 import datetime
 
-from .apiget import getLaunchDict
-from .libquotes import get_random_ben_quote
-from .bedpressfinder import bedpressFinderApi
+from .helperfunctions.getLauchDict import getLaunchDict
+from .helperfunctions.libquotes import get_random_ben_quote
+from .helperfunctions.bedpressfinder import bedpressFinderApi
+from .helperfunctions.getCurrentWeek import getCurrentWeek
 
 
 def displaypage(request):
     template_name = 'display/displaypage.html'
+
     all_todo_items = TodoModel.objects.all()
+
+    today = datetime.datetime.today()
+    quote_of_the_day = get_random_ben_quote()
+    weekNum = getCurrentWeek()
+    dateToSara = datetime.date(2018, 9, 13)
     launchDict = getLaunchDict()
     futureBedpress = bedpressFinderApi()
 
-    #Get the current week number. TODO: Find a more sleek way to do this...
-    year = datetime.datetime.now().year
-    month = datetime.datetime.now().month
-    day = datetime.datetime.now().day
-    weekNum = datetime.date(year, month, day).isocalendar()[1]
-
-    quote_of_the_day = get_random_ben_quote()
-
-
     context = {
-        'todo_list': all_todo_items,
+        'today': today.date(),
         'launchDict': launchDict,
         'weekNum': weekNum,
         'weeksUntilExam': 48 - weekNum,
+        'daysToSara': dateToSara - datetime.date.today(),
         'ben_quote': quote_of_the_day,
         'bedpresser': futureBedpress,
     }
@@ -39,14 +38,5 @@ def displaypage(request):
 
 from todo.models import TodoModel
 
-def displaypage_cssgrid(request):
-    template_name = 'display/displaypage_cssgrid.html'
 
-    queryset = TodoModel.objects.all()
-    context = {
-        'time': datetime.datetime.now(),
-        'todo_object_list': queryset
-    }
-
-    return render(request, template_name, context)
 

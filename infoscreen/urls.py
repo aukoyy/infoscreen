@@ -18,7 +18,6 @@ from django.contrib import admin
 
 from display.views import (
     displaypage,
-    displaypage_cssgrid,
 )
 
 from todo.views import (
@@ -38,7 +37,6 @@ from todo.views import (
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', displaypage),
-    url(r'^grid/$', displaypage_cssgrid),
 
 
     #Handle todolists

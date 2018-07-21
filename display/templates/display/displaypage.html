@@ -14,22 +14,35 @@
         <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
 
         <header class="masthead" >
-            <p class="site-title" id="clock">Standard two-column layout</p>
+            <p class="clock" id="clock">Standard two-column layout</p>
         </header><!-- .masthead -->
 
         <aside class="quote">
             <p style="text-align: center"><strong>{{ ben_quote }}</strong></p>
         </aside>
 
-        <aside class="sidebar">
 
+        <aside class="sidebar">
+            <div class="card">
+                <p><strong>Mandag:</strong><br>Oppsummering av forrige uke. Mål, økonomi og budskjett</p>
+            </div>
+            <div class="card">
+                <p><strong>Tirsdag:</strong><br>Shop. Food prep. Vask klær</p>
+            </div>
+            <div class="card">
+                <p><strong>Onsdag:</strong><br>Fellesvask. Rydd og vask i eget. Minimalisme</p>
+            </div>
+            <div class="card">
+                <p><strong>Torsdag:</strong><br>Brett klær. Digital orden og minimalisme. Misc / etterslep</p>
+            </div>
         </aside>
 
+
         <main id="content" class="main-content">
-            <h1>Uke {{ weekNum }}</h1>
-            <h2>{{ weeksUntilExam }} uker til eksamen</h2>
-
-
+            <p class="main-content-text">{{ today }} - Uke {{ weekNum }}</p>
+            <br>
+            <p class="main-content-text">{{ daysToSara.days }} Dager Til Sara</p>
+            <p class="main-content-text">{{ weeksUntilExam }} uker til eksamen</p>
         </main>
 
 
@@ -53,18 +66,13 @@
         <aside class="twin">
             <h2>Upcoming Launches</h2>
             <hr>
-            <table>
-                <tr>
-                    <th>Name</th>
-                    <th>Net</th>
-                </tr>
+
                 {% for launch in launchDict.launches %}
-                <tr>
-                    <td>{{ launch.name }}</td>
-                    <td>{{ launch.net }}</td>
-                </tr>
+                    <div class="card">
+                        {{ launch.name|truncatewords:4 }}
+                        {{ launch.net|truncatewords:2 }}
+                    </div>
                 {% endfor %}
-            </table>
         </aside>
 
         <footer class="colophon grid">
@@ -73,7 +81,6 @@
     </div>
 
     <script>
-
         //Get time and insert to header
         function startTime() {
             var today = new Date();
@@ -90,7 +97,6 @@
             if (i < 10) {i = "0" + i}  // add zero in front of numbers < 10
             return i;
         }
-
     </script>
 </body>
 </html>

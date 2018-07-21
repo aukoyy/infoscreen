@@ -101,11 +101,11 @@ General styles
     padding: 1em 2em;
 }
 
-.main-content {
-    background: white;
-}
 .masthead {
     background: #2185C5;
+}
+
+.clock {
     color: white;
     padding: 0px;
     font-family: 'Courier New';
@@ -113,15 +113,37 @@ General styles
     text-align: center;
 }
 
+
+
 .quote {
     background: #3E454C;
     color: white;
     padding: 1em;
+    font-family: 'Courier New';
     text-align: justify;
 }
 
 .sidebar {
-    background: springgreen;
+    background: mediumspringgreen;
+}
+
+.card {
+    padding: 5px;
+    margin-top: 5px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.6);
+}
+
+
+.main-content {
+    background: white;
+}
+
+.main-content-text {
+    color: #21759b;
+    padding: 0px;
+    font-family: 'Courier New';
+    font-size: 2em;
+    text-align: center;
 }
 
 .twin {
