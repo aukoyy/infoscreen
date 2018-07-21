@@ -121,12 +121,16 @@ General styles
 }
 
 .sidebar {
-    background: #FF7F66;
-    /*background: #3E454C;*/
+    background: springgreen;
 }
 
 .twin {
     background: #2185C5;
+
+}
+
+.twin .twin-sub-header {
+    /*padding-bottom: 0px;*/
 }
 
 .twin:last-of-type {
@@ -183,13 +187,13 @@ CSS Grid layout for wider screens, when browser supports grid:
             grid-row: 2;
         }
 
-        .main-content {
-            grid-column: 2/6;
-            grid-row: 3/4;
+        .sidebar {
+            grid-column: 2/4;
         }
 
-        .sidebar {
-            grid-column: 6/8;
+        .main-content {
+            grid-column: 4/8;
+            grid-row: 3/4;
         }
 
         .twin {

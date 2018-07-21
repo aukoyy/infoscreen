@@ -11,96 +11,65 @@
 <body onload="startTime()">
 
     <div class="site">
-    <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+        <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
 
-    <header class="masthead" >
-        <p class="site-title" id="clock">Standard two-column layout</p>
-    </header><!-- .masthead -->
+        <header class="masthead" >
+            <p class="site-title" id="clock">Standard two-column layout</p>
+        </header><!-- .masthead -->
 
-    <aside class="quote">
-        <p style="text-align: center"><strong>{{ ben_quote }}</strong></p>
-    </aside>
+        <aside class="quote">
+            <p style="text-align: center"><strong>{{ ben_quote }}</strong></p>
+        </aside>
 
-    <main id="content" class="main-content">
-        <h1>Uke {{ weekNum }}</h1>
-        <h2>{{ weeksUntilExam }} uker til eksamen</h2>
-        <br>
-        <hr>
-        <h3>Øvingsfrister</h3>
-        <p>Objektorientert: Onsdager</p>
-        <p>Databaser: Mandager</p>
-        <p>Interaksjon: Onsdag/Fredag</p>
-        <p>Utvikling: 08.03 & 15.03 & 22.03 & 12.04 & 19.04 & 23.04</p>
-        <p>Romteknologi II: 22.03 & 26.04</p>
+        <aside class="sidebar">
 
-    </main>
+        </aside>
+
+        <main id="content" class="main-content">
+            <h1>Uke {{ weekNum }}</h1>
+            <h2>{{ weeksUntilExam }} uker til eksamen</h2>
 
 
-    <aside class="sidebar">
-    <a href="/todolist">
-        <h2 style="padding-bottom: 0px;">Todo</h2>
+        </main>
 
-        <table style="width: 100%; text-align: left">
-            <tr>
-                <th>Done</th>
-                <th>Gjøremål</th>
-                <!--<th>Pri</th>-->
-            </tr>
+
+        <aside class="twin">
+            <h2 class="twin-sub-header">Upcoming Bedpresser</h2>
             <hr>
+            {% for bedpress in bedpresser %}
+                <ul>
+                    <a href="https://online.ntnu.no{{ bedpress.absolute_url }}" target="_blank"><li><h3>{{ bedpress.title }}</h3></li></a>
+                        <ul>
+                            <li>Påmelding  : {{ bedpress.attendance_event.registration_start }}</li>
+                            <li>Event Start: {{ bedpress.event_start }}</li>
+                            <li>Start: {{ bedpress.location }}</li>
+                            <li>Antall plasser: {{ bedpress.attendance_event.max_capacity }}</li>
 
-            {% for obj in todo_list %}
-                {% if obj.priority >= 3 %}
+                        </ul>
+                </ul>
+                {% endfor %}
+        </aside>
+
+        <aside class="twin">
+            <h2>Upcoming Launches</h2>
+            <hr>
+            <table>
                 <tr>
-                    <label class="checkbox">
-                        <td><input id="doneCheck" type="checkbox" value="checked" {% if obj.done %} checked {% endif %}></td>
-                    </label>
-                    <td>{{ obj.name }}</td>
-                    <!--<td>{{ obj.priority }}</td>-->
+                    <th>Name</th>
+                    <th>Net</th>
                 </tr>
-                {% endif %}
-            {% endfor %}
-        </table>
-    </a>
-    </aside>
+                {% for launch in launchDict.launches %}
+                <tr>
+                    <td>{{ launch.name }}</td>
+                    <td>{{ launch.net }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </aside>
 
-
-    <aside class="twin">
-        <h2 style="padding-bottom: 0px;">Upcoming Bedpresser</h2>
-        <hr>
-        {% for bedpress in bedpresser %}
-            <ul>
-                <a href="https://online.ntnu.no{{ bedpress.absolute_url }}" target="_blank"><li><h3>{{ bedpress.title }}</h3></li></a>
-                    <ul>
-                        <li>Påmelding  : {{ bedpress.attendance_event.registration_start }}</li>
-                        <li>Event Start: {{ bedpress.event_start }}</li>
-                        <li>Start: {{ bedpress.location }}</li>
-                        <li>Antall plasser: {{ bedpress.attendance_event.max_capacity }}</li>
-
-                    </ul>
-            </ul>
-
-            {% endfor %}
-
-    </aside>
-    <aside class="twin">
-        <h2 style="padding-bottom: 0px;">Upcoming Launches</h2>
-        <hr>
-        <table>
-            <tr>
-                <th>Name</th>
-                <th>Net</th>
-            </tr>
-            {% for launch in launchDict.launches %}
-            <tr>
-                <td>{{ launch.name }}</td>
-                <td>{{ launch.net }}</td>
-            </tr>
-            {% endfor %}
-        </table>
-    </aside>
-    <footer class="colophon grid">
-        <aside>Github : <strong><a href="https://github.com/aukcode/infoscreen">aukcode</a></strong> </aside>
-    </footer>
+        <footer class="colophon grid">
+            <aside>Github : <strong><a href="https://github.com/aukcode/infoscreen">aukcode</a></strong> </aside>
+        </footer>
     </div>
 
     <script>
@@ -122,32 +91,6 @@
             return i;
         }
 
-        //Get a list of rocket launches
-//        const xhttp = new XMLHttpRequest();
-//        xhttp.onreadystatechange = function() {
-//            if (this.readyState === 4 && this.status === 200) {
-////                console.log(xhttp.responseText);
-//                const response = JSON.parse(xhttp.responseText);
-//                console.log(response.launches[0]);
-//                const launches = response.launches;
-//                let rocketOutput = "";
-//
-//                rocketOutput += "<tr>" +
-//                    "<th>Name</th>" +
-//                    "<th>Launch time</th>" +
-//                    "</tr>";
-//                for(let i = 0; i < launches.length; i++){
-//                    rocketOutput += "<tr>";
-//                    rocketOutput += "<td>" + launches[i].name + "</td>";
-//                    rocketOutput += "<td>" + launches[i].net + "</td>";
-//                    rocketOutput += "<tr>";
-//                }
-//
-//                document.getElementById('rocketList').innerHTML = rocketOutput;
-//            }
-//        };
-//        xhttp.open("GET", "https://launchlibrary.net/1.2/launch?next=5", true);
-//        xhttp.send();
     </script>
 </body>
 </html>
