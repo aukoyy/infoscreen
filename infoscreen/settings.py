@@ -134,6 +134,8 @@ STATICFILES_FINDERS = (
 )
 STATIC_URL = '/static/'
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_root/')
+
 
 # CORS_REPLACE_HTTPS_REFERER      = True
 # HOST_SCHEME                     = "https://"
