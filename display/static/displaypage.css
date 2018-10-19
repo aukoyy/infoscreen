@@ -1,0 +1,108 @@
+        /* NOTE:
+ * Grid layout stuff starts at line 138.
+ * The stuff before is just boring old CSS to make content look not crappy.
+ */
+
+/*--------------------------------------------------------------
+CSS Reset
+--------------------------------------------------------------*/
+html {
+    font-family: sans-serif;
+}
+
+body {
+    margin: 0;
+}
+
+
+
+/*--------------------------------------------------------------
+General styles
+--------------------------------------------------------------*/
+.site {
+    background: #ededed;
+    min-height: 100vh;
+}
+
+.clock-header,
+.main-content,
+.sidebar,
+.twin,
+.footer {
+    padding: 1em 2em;
+}
+
+.clock-header {
+    background: #2185C5;
+}
+
+.clock {
+    color: white;
+    padding: 0px;
+    font-family: 'Courier New';
+    font-size: 15em;
+    text-align: center;
+    margin: 0;
+}
+
+
+
+.quote {
+    background: #3E454C;
+    color: white;
+    padding: 1em;
+    font-family: 'Courier New';
+    text-align: justify;
+}
+
+.sidebar {
+    background: springgreen;
+}
+
+.card {
+    padding: 5px;
+    margin-top: 10px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.6);
+}
+
+
+.main-content {
+    background: white;
+}
+
+.main-content-text {
+    color: #21759b;
+    padding: 0px;
+    font-family: 'Courier New';
+    font-size: 2em;
+    text-align: center;
+}
+
+.twin {
+    background: #2185C5;
+
+}
+
+.twin .twin-sub-header {
+    /*padding-bottom: 0px;*/
+}
+
+.twin:last-of-type {
+    background: #7ECEFD;
+}
+
+.colophon {
+    padding: 1em;
+    background: #3E454C;
+    color: white;
+}
+
+.colophon a {
+    color: white;
+}
+
+.colophon a:hover,
+.colophon a:focus {
+    border-bottom: 1px solid white;
+}
+

@@ -1,0 +1,1 @@
+denne filen er til for at git skal ta med mappen

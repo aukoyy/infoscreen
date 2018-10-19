@@ -1,330 +1,86 @@
 {% extends "base.html" %}
 {% block head_title %}Display || {{ block.super }}{% endblock head_title %}
-
+{% load static %}
 {% block content %}
+
+
 <head>
     <title>Display</title>
-
-    <!--<link rel="stylesheet" type="text/css" href="../../static/displaypage_css.css">-->
-
-    <style>
-
-        /* NOTE:
- * Grid layout stuff starts at line 138.
- * The stuff before is just boring old CSS to make content look not crappy.
- */
-
-/*--------------------------------------------------------------
-CSS Reset
---------------------------------------------------------------*/
-html {
-    font-family: sans-serif;
-    -webkit-text-size-adjust: 100%;
-    -ms-text-size-adjust:     100%;
-}
-
-body {
-    margin: 0;
-}
-
-img {
-    display: block;
-    border: 0;
-    width: 100%;
-    height: auto;
-}
-
-
-/*--------------------------------------------------------------
-Accessibility
---------------------------------------------------------------*/
-/* Text meant only for screen readers */
-.screen-reader-text {
-    clip: rect(1px, 1px, 1px, 1px);
-    position: absolute !important;
-    height: 1px;
-    width: 1px;
-    overflow: hidden;
-}
-
-.screen-reader-text:hover,
-.screen-reader-text:active,
-.screen-reader-text:focus {
-    background-color: #f1f1f1;
-    border-radius: 3px;
-    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
-    clip: auto !important;
-    color: #21759b;
-    display: block;
-    font-size: 14px;
-    font-weight: bold;
-    height: auto;
-    left: 5px;
-    line-height: normal;
-    padding: 15px 23px 14px;
-    text-decoration: none;
-    top: 5px;
-    width: auto;
-    z-index: 100000; /* Above WP toolbar */
-}
-
-
-/*--------------------------------------------------------------
-Typography
---------------------------------------------------------------*/
-body,
-button,
-input,
-select,
-textarea {
-    color: #404040;
-    font-family: 'Helvetica', Arial, sans-serif;
-    font-size: 18px;
-    line-height: 1.5;
-}
-
-h1,
-h2,
-h3 {
-    margin: 0;
-    padding: 1em 0;
-}
-
-p {
-    margin: 0;
-    padding: 0em 0;
-}
-
-/*--------------------------------------------------------------
-General styles
---------------------------------------------------------------*/
-.site {
-    background: #ededed;
-    min-height: 100vh;
-
-}
-
-.masthead,
-.main-content,
-.sidebar,
-.twin,
-.footer {
-    padding: 1em 2em;
-}
-
-.main-content {
-    background: white;
-}
-.masthead {
-    background: #2185C5;
-    color: white;
-    padding: 0px;
-    font-family: 'Courier New';
-    font-size: 15em;
-    text-align: center;
-}
-
-.quote {
-    background: #3E454C;
-    color: white;
-    padding: 1em;
-    text-align: justify;
-}
-
-.sidebar {
-    background: #FF7F66;
-    /*background: #3E454C;*/
-}
-
-.twin {
-    background: #2185C5;
-}
-
-.twin:last-of-type {
-    background: #7ECEFD;
-}
-
-.colophon {
-    padding: 1em;
-    background: #3E454C;
-    color: white;
-}
-
-.colophon a {
-    color: white;
-}
-
-.colophon a:hover,
-.colophon a:focus {
-    border-bottom: 1px solid white;
-}
-
-/*--------------------------------------------------------------
-If no grid support, limit width to 50em and center align
---------------------------------------------------------------*/
-@supports not (display: grid) {
-    .site {
-        max-width: 50em;
-        margin: 0 auto;
-    }
-}
-
-/*--------------------------------------------------------------
-CSS Grid layout for wider screens, when browser supports grid:
---------------------------------------------------------------*/
-
-@media screen and (min-width: 600px) {
-    @supports (display: grid) {
-
-        .site {
-            display: grid;
-            /*Setup grid. Works by defining one column then next then next. Remember to match number of grid cell
-            with the number of elements ment to occupie them*/
-            grid-template-columns: 1fr repeat(6, minmax(auto, 10em)) 1fr;
-            grid-template-rows: minmax(1em, auto) 4em 1fr auto minmax(1em, auto);
-        }
-
-        .masthead,
-        .colophon {
-            grid-column: span 8;
-        }
-
-        .quote {
-            grid-column: span 8;
-            grid-row: 2;
-        }
-
-        .main-content {
-            grid-column: 2/6;
-            grid-row: 3/4;
-        }
-
-        .sidebar {
-            grid-column: 6/8;
-        }
-
-        .twin {
-            grid-column: 2/5;
-            grid-row: 4/5;
-        }
-
-        .twin:last-of-type {
-            grid-column: 5/8;
-        }
-
-    }
-}
-
-
-    td, th {
-    text-align: left;
-    padding: 2px;
-    }
-
-    /*tr:nth-child(even) {*/
-        /*background-color: orangered;*/
-    /*}*/
-
-    </style>
 </head>
 
 <body onload="startTime()">
 
     <div class="site">
-    <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
 
-    <header class="masthead" >
-        <p class="site-title" id="clock">Standard two-column layout</p>
-    </header><!-- .masthead -->
+        <header class="clock-header" >
+            <p class="clock" id="clock">Standard two-column layout</p>
+        </header>
 
-    <aside class="quote">
-        <p style="text-align: center"><strong>{{ ben_quote }}</strong></p>
-    </aside>
-
-    <main id="content" class="main-content">
-        <h1>Uke {{ weekNum }}</h1>
-        <h2>{{ weeksUntilExam }} uker til eksamen</h2>
-        <br>
-        <hr>
-        <h3>Øvingsfrister</h3>
-        <p>Objektorientert: Onsdager</p>
-        <p>Databaser: Mandager</p>
-        <p>Interaksjon: Onsdag/Fredag</p>
-        <p>Utvikling: 08.03 & 15.03 & 22.03 & 12.04 & 19.04 & 23.04</p>
-        <p>Romteknologi II: 22.03 & 26.04</p>
-
-    </main>
+        <aside class="quote">
+            <p style="text-align: center"><strong>{{ quote }}</strong></p>
+        </aside>
 
 
-    <aside class="sidebar">
-    <a href="/todolist">
-        <h2 style="padding-bottom: 0px;">Todo</h2>
+        {# TODO: Perhaps these could be a Model instead? #}
+        <aside class="sidebar">
+            <div class="card">
+                <p><strong>Mandag:</strong><br>Oppsummering av forrige uke. Mål, økonomi og budskjett</p>
+            </div>
+            <div class="card">
+                <p><strong>Tirsdag:</strong><br>Shop. Food prep. Vask klær</p>
+            </div>
+            <div class="card">
+                <p><strong>Onsdag:</strong><br>Fellesvask. Rydd og vask i eget. Minimalisme</p>
+            </div>
+            <div class="card">
+                <p><strong>Torsdag:</strong><br>Brett klær. Digital orden og minimalisme. Misc / etterslep</p>
+            </div>
+        </aside>
 
-        <table style="width: 100%; text-align: left">
-            <tr>
-                <th>Done</th>
-                <th>Gjøremål</th>
-                <!--<th>Pri</th>-->
-            </tr>
+
+        <main id="content" class="main-content">
+            <p class="main-content-text">{{ today }} - Uke {{ weekNum }}</p>
+            <br><br><br><br><br><br><br><br>
+            <p class="main-content-text">{{ daysToSara.days }} Dager Til Sara</p>
+            <p class="main-content-text">{{ weeksUntilExam }} uker til eksamen</p>
+        </main>
+
+
+        <aside class="twin">
+            <h2 class="twin-sub-header">Upcoming Bedpresser</h2>
             <hr>
+            {% for bedpress in bedpresser %}
+                <ul>
+                    <a href="https://online.ntnu.no{{ bedpress.absolute_url }}" target="_blank"><li><h3>{{ bedpress.title }}</h3></li></a>
+                        <ul>
+                            <li>Påmelding  : {{ bedpress.attendance_event.registration_start }}</li>
+                            <li>Event Start: {{ bedpress.event_start }}</li>
+                            <li>Start: {{ bedpress.location }}</li>
+                            <li>Antall plasser: {{ bedpress.attendance_event.max_capacity }}</li>
+                        </ul>
+                </ul>
+                {% endfor %}
+        </aside>
 
-            {% for obj in todo_list %}
-                {% if obj.priority >= 3 %}
-                <tr>
-                    <label class="checkbox">
-                        <td><input id="doneCheck" type="checkbox" value="checked" {% if obj.done %} checked {% endif %}></td>
-                    </label>
-                    <td>{{ obj.name }}</td>
-                    <!--<td>{{ obj.priority }}</td>-->
-                </tr>
-                {% endif %}
-            {% endfor %}
-        </table>
-    </a>
-    </aside>
+        <aside class="twin">
+            <h2>Upcoming Launches</h2>
+            <hr>
+                {% for launch in launchDict.launches %}
+                    <div class="card">
+                        {{ launch.name|truncatewords:4 }}
+                        {# TODO: there is a |timeuntil function in django. figure out of it #}
+                        {{ launch.net|truncatewords_html:2 }}
+                    </div>
+                {% endfor %}
+        </aside>
 
+        <footer class="colophon grid">
+            <aside>Github : <strong><a href="https://github.com/aukcode/infoscreen">aukcode</a></strong> </aside>
+        </footer>
 
-    <aside class="twin">
-        <h2 style="padding-bottom: 0px;">Upcoming Bedpresser</h2>
-        <hr>
-        {% for bedpress in bedpresser %}
-            <ul>
-                <a href="https://online.ntnu.no{{ bedpress.absolute_url }}" target="_blank"><li><h3>{{ bedpress.title }}</h3></li></a>
-                    <ul>
-                        <li>Påmelding  : {{ bedpress.attendance_event.registration_start }}</li>
-                        <li>Event Start: {{ bedpress.event_start }}</li>
-                        <li>Start: {{ bedpress.location }}</li>
-                        <li>Antall plasser: {{ bedpress.attendance_event.max_capacity }}</li>
-
-                    </ul>
-            </ul>
-
-            {% endfor %}
-
-    </aside>
-    <aside class="twin">
-        <h2 style="padding-bottom: 0px;">Upcoming Launches</h2>
-        <hr>
-        <table>
-            <tr>
-                <th>Name</th>
-                <th>Net</th>
-            </tr>
-            {% for launch in launchDict.launches %}
-            <tr>
-                <td>{{ launch.name }}</td>
-                <td>{{ launch.net }}</td>
-            </tr>
-            {% endfor %}
-        </table>
-    </aside>
-    <footer class="colophon grid">
-        <aside>Github : <strong><a href="https://github.com/aukcode/infoscreen">aukcode</a></strong> </aside>
-    </footer>
     </div>
 
     <script>
-
         //Get time and insert to header
         function startTime() {
             var today = new Date();
@@ -341,33 +97,6 @@ CSS Grid layout for wider screens, when browser supports grid:
             if (i < 10) {i = "0" + i}  // add zero in front of numbers < 10
             return i;
         }
-
-        //Get a list of rocket launches
-//        const xhttp = new XMLHttpRequest();
-//        xhttp.onreadystatechange = function() {
-//            if (this.readyState === 4 && this.status === 200) {
-////                console.log(xhttp.responseText);
-//                const response = JSON.parse(xhttp.responseText);
-//                console.log(response.launches[0]);
-//                const launches = response.launches;
-//                let rocketOutput = "";
-//
-//                rocketOutput += "<tr>" +
-//                    "<th>Name</th>" +
-//                    "<th>Launch time</th>" +
-//                    "</tr>";
-//                for(let i = 0; i < launches.length; i++){
-//                    rocketOutput += "<tr>";
-//                    rocketOutput += "<td>" + launches[i].name + "</td>";
-//                    rocketOutput += "<td>" + launches[i].net + "</td>";
-//                    rocketOutput += "<tr>";
-//                }
-//
-//                document.getElementById('rocketList').innerHTML = rocketOutput;
-//            }
-//        };
-//        xhttp.open("GET", "https://launchlibrary.net/1.2/launch?next=5", true);
-//        xhttp.send();
     </script>
 </body>
 </html>

@@ -1,0 +1,57 @@
+
+/*--------------------------------------------------------------
+If no grid support, limit width to 50em and center align
+--------------------------------------------------------------*/
+@supports not (display: grid) {
+    .site {
+        max-width: 50em;
+        margin: 0 auto;
+    }
+}
+
+/*--------------------------------------------------------------
+CSS Grid layout for wider screens, when browser supports grid:
+--------------------------------------------------------------*/
+
+@media screen and (min-width: 600px) {
+    @supports (display: grid) {
+
+        .site {
+            display: grid;
+            /*Setup grid. Works by defining one column then next then next. Remember to match number of grid cell
+            with the number of elements ment to occupie them*/
+            grid-template-columns: 1fr repeat(6, minmax(auto, 10em)) 1fr;
+            grid-template-rows: minmax(1em, auto) 4em 1fr auto minmax(1em, auto);
+        }
+
+        .clock-header,
+        .colophon {
+            grid-column: span 8;
+        }
+
+        /*TODO: figure out how to strech the quote section to content*/
+        .quote {
+            grid-column: span 8;
+            /*grid-row: 2;*/
+        }
+
+        .sidebar {
+            grid-column: 1/4;
+        }
+
+        .main-content {
+            grid-column: 4/9;
+            grid-row: 3/4;
+        }
+
+        .twin {
+            grid-column: 1/5;
+            grid-row: 4/5;
+        }
+
+        .twin:last-of-type {
+            grid-column: 5/9;
+        }
+
+    }
+}
