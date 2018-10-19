@@ -11,19 +11,13 @@ def init():
 	time.sleep(10)
 	hdmi_off()
 	turn_off_auto_screen_blank()
-	prevent_evening_trigger()
-	#time.sleep(60*60)
+	prevent_evening_or_weekend_trigger()
 	while True:
 		#if weekday, run app (saturday is 5)
 		if datetime.datetime.now().weekday() < 5:
 			check_time()
 		else:
-			break
-		time.sleep(5)
-	#Wake up on saturday nine o clock
-	time.sleep(60*60*9)
-	start_app()
-	success()
+			prevent_evening_or_weekend_trigger()
 
 
 
@@ -68,9 +62,9 @@ def now_time():
 	return now_time
 
 
-def prevent_evening_trigger():
+def prevent_evening_or_weekend_trigger():
 	print('Preventing evening trigger')
-	while now_time() >= shut_down_time:
+	while now_time() >= shut_down_time or datetime.datetime.now().weekday() >= 5:
 		time.sleep(10)
 
 
@@ -82,7 +76,7 @@ def check_time():
 		print('\n================================================')
 		print('waking up')
 		start_app()
-		time.sleep(20)
+		time.sleep(30)
 		hdmi_on()
 		#start_music()
 		#time.sleep(60*60*2)
@@ -95,8 +89,7 @@ def check_time():
 
 
 def hdmi_on():
-	print('turning monitor on')
-	print('time is: ' + str(now_time()))
+	print('turning monitor on. Time is: ' + str(now_time()))
 	os.system("tvservice -p")
 	global display_is_off
 	display_is_off = False
