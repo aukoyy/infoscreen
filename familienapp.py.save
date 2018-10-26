@@ -8,10 +8,10 @@ k = PyKeyboard()
 
 def init():
 	#print('Turning off HDMI...')
-	time.sleep(5)
+	time.sleep(3)
 	#hdmi_off()
 	turn_off_auto_screen_blank()
-	#prevent_evening_or_weekend_trigger()
+	prevent_evening_or_weekend_trigger()
 	while True:
 		#if weekday, run app (saturday is 5)
 		if datetime.datetime.now().weekday() < 6:
@@ -20,18 +20,30 @@ def init():
 			prevent_evening_or_weekend_trigger()
 
 
+
+#App url
+url = 'https://aukinfo.herokuapp.com'
+
+
 #Input
 url_dict = {
 	'aukinfo': 'https://aukinfo.herokuapp.com',
 	'Calendar': 'https://www.calendar.google.com/calendar/r',
-	'Weather Short Term': 'https://www.yr.no/place/Norway/Trondelag/Trondheim/Trondheim/hour_by_hour.html',
-	'Weather Long Term': 'https://www.yr.no/place/Norway/Trondelag/Trondheim/Trondheim/long.html',
+	'Weather Short Term': 'https://www.yr.no/place/Norway/Tr%C3%B8ndelag/Trondheim/Trondheim/hour_by_hour.html',
 	}
-
-
-wake_up_time = 600 #int(input('Enter Wake Up Time: '))
-shut_down_time = 2200 #int(input('Enter Shut Down Time: '))
+def get_random_song_url():
+	return random.sample(music_dict.items(), int(1))[0][1]
+music_url = music_dict['Pisk cotton club']
+#music_url = get_random_song_url()
+wake_up_time = int(input('Enter Wake Up Time: '))
+shut_down_time = int(input('Enter Shut Down Time: '))
 display_is_off = True
+#days_running = int(input('Enter how many days to run: '))
+
+
+# TODO:
+# 4. Implement physical button to wake up/ctrl+alt+t + os.system('tvservice -p')
+# ~ se knock knock
 
 
 def turn_off_auto_screen_blank():
@@ -61,11 +73,12 @@ def check_time():
 	if display_is_off and wake_up_time <= now_time() < shut_down_time:
 		print('\n================================================')
 		print('waking up')
-		#hdmi_on()
-		time.sleep(3)
-		while(True):
-			ctrl_tab()
-			time.sleep(10)
+		start_app()
+		time.sleep(30)
+		hdmi_on()
+		#start_music()
+		#time.sleep(60*60*2)
+		#stop_music()
 	if not display_is_off and now_time() >= shut_down_time:
 		close_web()
 		print('going to sleep in 10 sek')
@@ -80,20 +93,30 @@ def hdmi_on():
 	display_is_off = False
 
 
-def open_web():
-        webbrowser.get(using='chromium-browser').open(url_dict['Calendar'])
-	time.sleep(3)
-	#webbrowser.get(using='chromium-browser').open(url_dict['Weather Long Term'])
-	time.sleep(3)
+def start_app():
+        webbrowser.get(using='chromium-browser').open(url)
+	time.sleep(5)
 	k.tap_key(k.function_keys[11])
 
 
-def ctrl_tab():
-	time.sleep(3) #PI is slow
+def start_music():
+	webbrowser.get(using='chromium-browser').open(music_url)
+	time.sleep(10) #PI is slow
 	k.press_key(k.control_l_key)
-	time.sleep(3)
+	k.press_key(k.shift_key)
+	time.sleep(2)
 	k.tap_key(k.tab_key)
+	k.release_key(k.shift_key)
 	k.release_key(k.control_l_key)
+
+
+def stop_music():
+	k.press_key(k.control_l_key)
+	k.tap_key(k.tab_key)
+	time.sleep(1)
+	k.tap_key('w')
+	k.release_key(k.control_l_key)
+
 
 def close_web():
 	k.press_key(k.control_l_key)
