@@ -69,7 +69,7 @@ def check_time():
 				time.sleep(2)
 				print(i)
 				if i == 0:
-					update_web(3)
+					refresh_tab(3)
 					print('updating')
 
 	if not display_is_off and now_time() >= shut_down_time:
@@ -102,11 +102,11 @@ def ctrl_tab():
 	k.release_key(k.control_l_key)
 
 
-def update_web(number_of_tabs):
-	for i in range(1, number_of_tabs):
+def refresh_tab(number_of_tabs):
+	for i in range(0, number_of_tabs):
 		k.press_key(k.control_l_key)
 		time.sleep(1)
-		k.tab_key('r')
+		k.tab_key('r', n=1)
 		k.release_key(k.control_l_key)
 		time.sleep(1)
 
