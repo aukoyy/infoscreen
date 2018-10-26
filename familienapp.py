@@ -68,7 +68,7 @@ def check_time():
 				ctrl_tab()
 				time.sleep(2)
 				print(i)
-				if i == 3:
+				if i == 0:
 					update_web(3)
 					print('updating')
 
