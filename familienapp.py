@@ -93,9 +93,9 @@ def open_web():
 
 
 def ctrl_tab():
-	time.sleep(3) #PI is slow
+	time.sleep(1) #PI is slow
 	k.press_key(k.control_l_key)
-	time.sleep(3)
+	time.sleep(1)
 	k.tap_key(k.tab_key)
 	k.release_key(k.control_l_key)
 
