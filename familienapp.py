@@ -64,8 +64,12 @@ def check_time():
 		#hdmi_on()
 		time.sleep(3)
 		while(True):
-			ctrl_tab()
-			time.sleep(10)
+			for i in range(0, 5):
+				ctrl_tab()
+				time.sleep(2)
+				if i == 5:
+					update_web(3)
+
 	if not display_is_off and now_time() >= shut_down_time:
 		close_web()
 		print('going to sleep in 10 sek')
@@ -81,7 +85,7 @@ def hdmi_on():
 
 
 def open_web():
-        webbrowser.get(using='chromium-browser').open(url_dict['Calendar'])
+	webbrowser.get(using='chromium-browser').open(url_dict['Calendar'])
 	time.sleep(3)
 	#webbrowser.get(using='chromium-browser').open(url_dict['Weather Long Term'])
 	time.sleep(3)
@@ -94,6 +98,16 @@ def ctrl_tab():
 	time.sleep(3)
 	k.tap_key(k.tab_key)
 	k.release_key(k.control_l_key)
+
+
+def update_web(number_of_tabs):
+	for i in range(1, number_of_tabs):
+		time.sleep(1)
+		k.press_key(k.control_l_key)
+		time.sleep(1)
+		k.tab_key('r')
+		k.release_key(k.control_l_key)
+		time.sleep(1)
 
 def close_web():
 	k.press_key(k.control_l_key)
