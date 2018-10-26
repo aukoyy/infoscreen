@@ -64,11 +64,13 @@ def check_time():
 		#hdmi_on()
 		time.sleep(3)
 		while(True):
-			for i in range(0, 5):
+			for i in range(0, 3):
 				ctrl_tab()
 				time.sleep(2)
-				if i == 5:
+				print(i)
+				if i == 3:
 					update_web(3)
+					print('updating')
 
 	if not display_is_off and now_time() >= shut_down_time:
 		close_web()
@@ -102,7 +104,6 @@ def ctrl_tab():
 
 def update_web(number_of_tabs):
 	for i in range(1, number_of_tabs):
-		time.sleep(1)
 		k.press_key(k.control_l_key)
 		time.sleep(1)
 		k.tab_key('r')
