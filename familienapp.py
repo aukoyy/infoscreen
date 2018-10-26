@@ -8,7 +8,7 @@ k = PyKeyboard()
 
 def init():
 	#print('Turning off HDMI...')
-	time.sleep(5)
+	time.sleep(2)
 	#hdmi_off()
 	turn_off_auto_screen_blank()
 	#prevent_evening_or_weekend_trigger()
@@ -106,7 +106,7 @@ def refresh_tab(number_of_tabs):
 	for i in range(0, number_of_tabs):
 		k.press_key(k.control_l_key)
 		time.sleep(1)
-		k.tab_key('r', n=1)
+		k.tap_key('r')
 		k.release_key(k.control_l_key)
 		time.sleep(1)
 
