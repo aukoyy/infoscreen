@@ -109,6 +109,7 @@ def refresh_tab(number_of_tabs):
 		k.tap_key('r')
 		k.release_key(k.control_l_key)
 		time.sleep(1)
+		ctrl_tab()
 
 def close_web():
 	k.press_key(k.control_l_key)
